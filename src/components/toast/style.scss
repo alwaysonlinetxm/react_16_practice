@@ -1,0 +1,33 @@
+.toast {
+  position: fixed;
+  z-index: 999;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  line-height: 44px;
+  padding: 20px 30px;
+  text-align: center;
+  color: #fff;
+  font-size: 24px; /* px */
+  border-radius: 5px;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.7);
+  animation: fadeout 0.5s linear 2s forwards;
+}
+
+@-webkit-keyframes fadeout {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
+@keyframes fadeout {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

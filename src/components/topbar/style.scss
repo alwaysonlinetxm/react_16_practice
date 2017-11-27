@@ -1,0 +1,40 @@
+@import "../../container/common.scss";
+
+$height: 100px;
+
+.box {
+	position: relative;
+	height: $height;
+	box-sizing: content-box;
+}
+
+.topbar {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 999;
+	height: $height;
+	line-height: $height;
+	text-align: center;
+	font-size: 32px; /* px */
+	color: #212121;
+	background-color: #f8f9fb;
+	box-sizing: content-box;
+}
+
+.button {
+	position: fixed;
+	right: 30px;
+	top: $height / 2;
+	z-index: 999;
+  max-width: 142px;
+  font-size: 24px; /*px*/
+  color: #ff6f00;
+  border: 1px solid #ff6f00; /*no*/
+  border-radius: 8px;
+  padding: 4px 16px;
+  overflow: hidden;
+	background-color: #f8f8fb;
+	transform: translateY(-50%);
+}

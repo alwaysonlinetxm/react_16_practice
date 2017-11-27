@@ -1,0 +1,16 @@
+.buttons {
+  display: -webkit-box;
+  -webkit-box-orient: horizontal;
+  -webkit-box-pack: center;
+  -webkit-box-align: stretch;
+}
+
+.button,
+.cancel {
+  width: 50%;
+  padding: 14px 0;
+}
+
+.cancel {
+  background-color: #eee;
+}
