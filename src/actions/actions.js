@@ -1,6 +1,6 @@
 import { createActions } from 'redux-actions';
 
-const noop = () => {};
+// const noop = () => {};
 const retFirst = data => data;
 
 export default createActions({
@@ -9,5 +9,5 @@ export default createActions({
   // topbar
   [ActionTypes.SET_TOPBAR]: retFirst,
   // task
-  [ActionTypes.GET_TASK]: noop
+  [ActionTypes.GET_TASK]: retFirst
 });

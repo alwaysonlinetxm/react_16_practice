@@ -7,12 +7,13 @@ const { request } = actions;
 
 export function* getTask() {
   while(true) {
-    yield take(ActionTypes.GET_TASK);
+    const action = yield take(ActionTypes.GET_TASK);
     yield put(request({
       data: {
         task: [ 'demaxiya1', 'damexiya2' ]
       },
-      success: ActionTypes.GET_TASK_SUCC
+      success: ActionTypes.GET_TASK_SUCC,
+      callback: action.payload && action.payload.cb
     }));
   }
 }

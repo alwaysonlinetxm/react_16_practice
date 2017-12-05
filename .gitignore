@@ -5,3 +5,4 @@ yarn-error.log
 *.bak
 static
 dist
+dist_server

@@ -3,6 +3,7 @@ import { put, call, takeEvery } from 'redux-saga/effects';
 export default function* request() {
   yield takeEvery(ActionTypes.REQUEST, function* (requestAction) {
     const { data, success, error, start, callback } = requestAction.payload;
+    let ret = null;
 
     if (start) {
       yield put({
@@ -12,8 +13,7 @@ export default function* request() {
     }
 
     try {
-      const ret = yield call(Util.requestApi.bind(Util), data);
-      typeof callback === 'function' && callback(ret);
+      ret = yield call(Util.requestApi.bind(Util), data);
 
       if (success) {
         yield put({
@@ -29,5 +29,6 @@ export default function* request() {
         });
       }
     }
+    typeof callback === 'function' && callback(ret);
   });
 }

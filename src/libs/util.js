@@ -16,7 +16,10 @@ export default {
 		// })
 		// .then(response => response.json())
 		// .then(data => data);
-		return payload;
+		// return payload;
+		return new Promise((resolve) => {
+			setTimeout(() => resolve(payload), 1000);
+		})
 	},
 
 	// cookie操作

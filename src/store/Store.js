@@ -4,14 +4,17 @@ import createSagaMiddleware from 'redux-saga';
 import createReducer from '../reducers/RootReducer';
 import rootSaga from '../sagas/RootSaga';
 
+import Immutable from 'seamless-immutable';
+
 const sagaMiddleware = createSagaMiddleware();
 const enhancer = compose(
   applyMiddleware(sagaMiddleware),
-  window.devToolsExtension ? window.devToolsExtension() : f => f
+  process.browser && window.devToolsExtension ? window.devToolsExtension() : f => f
 );
 
 // will cover the initState in reducer
-const initialState = {};
+const initialState = Immutable(process.browser ? window.SERVER_INIT_STATE || {} : {});
+// const initialState = {};
 const store = createStore(createReducer(), initialState, enhancer);
 store.asyncReducers = {};
 store.asyncSagas = {};

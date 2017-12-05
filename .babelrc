@@ -7,6 +7,20 @@
     "stage-0"
   ],
   "plugins": [
-    "transform-runtime"
-  ]
+    "transform-runtime",
+    "transform-decorators-legacy"
+  ],
+  "env": {
+    "server": {
+      "presets": [
+        ["env", {
+          "targets": {
+            "node": "current"
+          }
+        }],
+        "react",
+        "stage-0"
+      ]
+    }
+  }
 }
