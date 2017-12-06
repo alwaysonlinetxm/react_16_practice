@@ -1,2 +1,2 @@
-# react_16_practice
-react 16 practice
+# react_isomorph_practice
+A practice of react isomorph (with redux and react-router v3).
