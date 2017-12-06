@@ -69,6 +69,7 @@ module.exports = function makeWebpackConfig(env) {
 	        }, {
 						loader: 'postcss-loader',
 						options: {
+							sourceMap: !IS_PROD,
 							plugins: () => [
 								autoprefixer({
 									browsers: [ '> 5%', 'last 2 versions' ]
