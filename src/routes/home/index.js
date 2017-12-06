@@ -2,13 +2,12 @@ import { injectAsyncReducer, injectAsyncSaga } from '../../store/Store';
 import actions, { asyncActionHandler } from '../../actions/actions';
 
 export default store => ({
-  path: '/task',
   getData() {
     return [
       // sync action
-      store.dispatch(actions.setTopbar('task')),
+      store.dispatch(actions.setTopbar('home')),
       // async action
-      asyncActionHandler(actions.getTask, store)
+      asyncActionHandler(actions.getHomeText, store)
     ];
   },
 
@@ -16,14 +15,14 @@ export default store => ({
     try {
       require.ensure([], require => {
         injectAsyncReducer(store, {
-          task: require('../../reducers/TaskReducer').default
+          home: require('../../reducers/HomeReducer').default
         });
-        injectAsyncSaga(store, require('../../sagas/TaskSaga').default);
+        injectAsyncSaga(store, require('../../sagas/HomeSaga').default);
 
-        cb(null, require('./Task').default);
-      }, 'Task');
+        cb(null, require('./Home').default);
+      }, 'Home');
     } catch (e) {
-      console.warn('[Task]路由加载失败');
+      console.warn('[Home]路由加载失败');
       console.error(e)
     }
   }

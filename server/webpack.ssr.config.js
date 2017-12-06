@@ -6,7 +6,7 @@ module.exports = function makeWebpackConfig(env) {
   return serverConfig = {
     context: path.join(__dirname, '../'),
     entry: {
-      index: './src/container/route',
+      index: './src/container/app',
     },
     output: {
       path: path.join(__dirname, '../dist_server'),
@@ -17,7 +17,12 @@ module.exports = function makeWebpackConfig(env) {
       rules: [{
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        use: 'babel-loader'
+        use: {
+          loader: 'babel-loader',
+          // options: {
+          //   plugins: ['dynamic-import-webpack', 'remove-webpack'],
+          // }
+        }
       }, {
         test: /\.(scss|css)$/,          //node端不能 require('xx.css')，会报错
         use: ['null-loader']

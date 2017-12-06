@@ -14,18 +14,22 @@ const enhancer = compose(
 
 // will cover the initState in reducer
 const initialState = Immutable(process.browser ? window.SERVER_INIT_STATE || {} : {});
-// const initialState = {};
-const store = createStore(createReducer(), initialState, enhancer);
-store.asyncReducers = {};
-store.asyncSagas = {};
-sagaMiddleware.run(rootSaga, store.dispatch);
 
-export function injectAsyncReducer(asyncReducers) {
+export function createAppStore(initState = initialState) {
+  const store = createStore(createReducer(), initState, enhancer);
+  store.asyncReducers = {};
+  store.asyncSagas = {};
+  sagaMiddleware.run(rootSaga, store.dispatch);
+
+  return store;
+}
+
+export function injectAsyncReducer(store, asyncReducers) {
   Object.assign(store.asyncReducers, asyncReducers);
   store.replaceReducer(createReducer(store.asyncReducers));
 }
 
-export function injectAsyncSaga(asyncSagas) {
+export function injectAsyncSaga(store, asyncSagas) {
   for (const key in asyncSagas) {
     if (!store.asyncSagas.hasOwnProperty(key)) {
       sagaMiddleware.run(asyncSagas[key]);
@@ -33,5 +37,3 @@ export function injectAsyncSaga(asyncSagas) {
     }
   }
 }
-
-export default store;

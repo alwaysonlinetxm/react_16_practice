@@ -19,7 +19,7 @@ const { renderToString } = ReactDOMServer;
 
 
 const reactRouter = require('react-router');
-import { route, store } from '../dist_server/index.ssr';
+import { createAppRoutes, createAppStore } from '../dist_server/index.ssr';
 import { Provider } from 'react-redux';
 
 const { match, RouterContext } = reactRouter;
@@ -42,11 +42,15 @@ const { match, RouterContext } = reactRouter;
 }
 
 router.get('*', async (ctx, next) => {
+  // create a new store everytime for not sharing the same store among different users
+  const store = createAppStore();
   const props = await new Promise((resolve) => {
-    match({ routes: route, location: ctx.req.url }, (err, redirect, props) => {
+    match({ routes: createAppRoutes(store), location: ctx.req.url }, (err, redirect, props) => {
       resolve(props);
     })
   });
+
+  // console.log(props);
 
   if (props) {
     const { getData } = props.routes[1];
@@ -58,6 +62,8 @@ router.get('*', async (ctx, next) => {
       await Promise.all(getData());
       initState = store.getState();
     }
+
+    console.log('-----', initState)
 
     const appHtml = renderToString(
       <Provider store={ store }>
