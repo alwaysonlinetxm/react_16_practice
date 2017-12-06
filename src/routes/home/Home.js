@@ -4,6 +4,10 @@ import { connect } from 'react-redux';
 
 import actions from '../../actions/actions';
 
+import Style from './style.scss';
+
+import logoImg from './images/logo.png';
+
 const { getHomeText } = actions;
 
 class Home extends PureComponent {
@@ -31,7 +35,11 @@ class Home extends PureComponent {
 
   render() {
     return (
-      <div onClick={ this.click }>{ this.props.text }</div>
+      <div>
+        <h1 onClick={ this.click } className={ Style.text }>{ this.props.text }</h1>
+        <img src={ logoImg } className={ Style.logo } />
+      </div>
+
     );
   }
 }
