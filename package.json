@@ -8,7 +8,7 @@
     "dev": "NODE_ENV=development webpack-dev-server --hot --progress",
     "start": "NODE_ENV=development webpack -w --progress",
     "build_client": "NODE_ENV=production webpack -p --progress",
-    "build_server": "NODE_ENV=production webpack --config ./server/webpack.ssr.config.js  --progress",
+    "build_server": "NODE_ENV=production BUILD_ENV=server webpack --progress",
     "build": "yarn run build_client & yarn run build_server",
     "watch": "BABEL_ENV=server babel-watch ./server/index.js"
   },
