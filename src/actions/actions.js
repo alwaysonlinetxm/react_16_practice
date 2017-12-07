@@ -2,9 +2,12 @@ import { createActions } from 'redux-actions';
 
 // const noop = () => {};
 const retFirst = data => data;
-const asyncActionHandler = (action, store) => new Promise((resolve) => store.dispatch(action({
-  cb: res => resolve(res)
-})));
+const dispatchAsyncAction = (store, action, payload = {}) => {
+  return new Promise((resolve) => store.dispatch(action({
+    ...payload,
+    cb: res => resolve(res)
+  })));
+};
 
 export default createActions({
   // request
@@ -17,4 +20,4 @@ export default createActions({
   [ActionTypes.GET_TASK]: retFirst
 });
 
-export { asyncActionHandler };
+export { dispatchAsyncAction };

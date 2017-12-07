@@ -1,5 +1,5 @@
 import { injectAsyncReducer, injectAsyncSaga } from '../../store/Store';
-import actions, { asyncActionHandler } from '../../actions/actions';
+import actions, { dispatchAsyncAction } from '../../actions/actions';
 
 export default store => ({
   getData() {
@@ -7,7 +7,7 @@ export default store => ({
       // sync action
       store.dispatch(actions.setTopbar('home')),
       // async action
-      asyncActionHandler(actions.getHomeText, store)
+      dispatchAsyncAction(store, actions.getHomeText)
     ];
   },
 

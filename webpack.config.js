@@ -84,7 +84,7 @@ module.exports = function makeWebpackConfig(env) {
 							outputStyle: 'compact'
 						}
 					}],
-					publicPath: '../'
+					// publicPath: '../'
 				})
 	    }, {
 	      test: /\.(png|jpg|gif)$/,
