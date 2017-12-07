@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const OptimizeJsPlugin = require('optimize-js-plugin');
 const nodeExternals = require('webpack-node-externals');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const px2rem = require('postcss-px2rem');
 
 const IS_PROD = process.env.NODE_ENV === 'production';
@@ -140,27 +141,12 @@ module.exports = function makeWebpackConfig(env) {
 				}
 			})
 		].concat(IS_PROD ? [
-			new webpack.optimize.UglifyJsPlugin({
-				compress: {
-		      sequences: true,
-		      dead_code: true,
-		      conditionals: true,
-		      booleans: true,
-		      unused: true,
-		      if_return: true,
-		      join_vars: true,
-		      drop_console: true,
-					drop_debugger: true,
-					warnings: false,
-					loops: true,
-					properties: true
-		    },
-		    mangle: {
-		      except: [ 'exports', 'require' ]
-		    },
-		    output: {
-		      comments: false
-		    }
+			new UglifyJsPlugin({
+				uglifyOptions: {
+					compress: {
+			      drop_console: true
+			    }
+				}
 	    }),
 			new webpack.optimize.ModuleConcatenationPlugin(),
 			new webpack.optimize.MinChunkSizePlugin({ minChunkSize: 10 }),
