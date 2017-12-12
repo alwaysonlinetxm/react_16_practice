@@ -1,6 +1,8 @@
 # react_isomorph_practice
 A practice of react isomorph (with redux and react-router v3).
 
+PS: v4版本的react-router已不在支持路由配置中的getComponent方法，且code spliting的方法也有所改变，故这套方案暂不适用react-router V4.
+
 ## Introduction
 
 一个集成了react、redux、react-router(v3)的同构SPA demo。server端实现了对不同路由页的同构渲染。
