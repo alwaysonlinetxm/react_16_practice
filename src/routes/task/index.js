@@ -1,6 +1,8 @@
 import { injectAsyncReducer, injectAsyncSaga } from '../../store/Store';
 import actions, { dispatchAsyncAction } from '../../actions/actions';
 
+
+// exported as a function for accepting a initial store when server rendering
 export default store => ({
   path: '/task',
   getData() {
